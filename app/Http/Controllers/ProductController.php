@@ -45,4 +45,38 @@ class ProductController extends Controller
             "data" => $products
         ]);
     }
+
+    // Editing a data
+    public function edit(Request $request, $id) {
+        $cek = $request->validate([
+            "nama" => "required",
+            "desc" => "required",
+            "harga" => "required|numeric",
+        ]);
+
+        $products = Product::find($id);
+
+        $products->nama = $cek['nama'];
+        $products->desc = $cek['desc'];
+        $products->harga = $cek['harga'];
+
+        $products->save();
+
+        return response()->json([
+            "message" => "Product berhasil diubah",
+            "code" => 200,
+            "data" => $products
+        ]);
+    }
+
+    //
+    public function delete($id) {
+        $products = Product::find($id);
+        $products->delete();
+
+        return response()->json([
+            "message" => "Product berhasil dihapus",
+            "code" => 200,
+        ]);
+    }
 }

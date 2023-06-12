@@ -8,6 +8,8 @@ use App\Http\Controllers\ProductController;
 Route::get('/list', [ProductController::class, 'index']);
 Route::get('/detail/{id}', [ProductController::class, 'showDataById']);
 Route::post('/add', [ProductController::class, 'add']);
+Route::put('/edit/{id}', [ProductController::class, 'edit']);
+Route::delete('/delete/{id}', [ProductController::class, 'delete']);
 
 /*
 |--------------------------------------------------------------------------
